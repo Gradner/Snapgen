@@ -21,7 +21,11 @@ options = {
 	// Time to wait after page-load to generate image
 	renderDelay: 1000,
 	// Do you want an error if status is not 200?
+<<<<<<< HEAD
 	errorIfStatusIsNot200: true,
+=======
+	errorIfStatusIsNot200: false,
+>>>>>>> 40bd56b2e9fa2dd3d2adfa9f3b798d4c4d6e0ad9
 	// Amount of time to wait before giving up on page that won't load
 	timeout: 0,
 	// Can be switched between 'url' to generate image from url, 'html'
@@ -48,6 +52,7 @@ let loadData = new Promise((resolve, reject)=>{
 	});
 });
 
+<<<<<<< HEAD
 // If there is an argument used when invoking snapgen (i.e. using the command
 // 'node snapgen website.com' from command line) then a snap will be generated
 // for the web address used as an argument. Otherwise, we'll load the data from
@@ -68,3 +73,14 @@ if(process.argv[2]){
 		}
 	})
 }
+=======
+// Once data is loaded, for each item in JSON file create screenshot
+
+loadData.then((data)=>{
+	for(i in data){
+		webshot(data[i].baseUrl, './snaps/' + data[i].baseUrl + '.png', options, (err)=>{
+			console.log('image written to disk')
+		});
+	}
+})
+>>>>>>> 40bd56b2e9fa2dd3d2adfa9f3b798d4c4d6e0ad9
