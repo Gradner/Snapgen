@@ -1,0 +1,14 @@
+{
+  "name": "snapgen",
+  "version": "1.0.0",
+  "description": "Website preview photo generator",
+  "main": "snapgen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Devon G",
+  "license": "ISC",
+  "dependencies": {
+    "webshot": "^0.18.0"
+  }
+}
