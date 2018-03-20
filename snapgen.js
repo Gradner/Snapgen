@@ -19,7 +19,7 @@ options = {
 	// Offset to move around shotSize box on windowSize page
 	shotOffset: { left: 0, right: 0, top: 0, bottom: 0},
 	// Time to wait after page-load to generate image
-	renderDelay: 1000,
+	renderDelay: 0,
 	// Do you want an error if status is not 200?
 	errorIfStatusIsNot200: true,
 	// Amount of time to wait before giving up on page that won't load
@@ -61,10 +61,19 @@ if(process.argv[2]){
 	})
 } else {
 	loadData.then((data)=>{
-		for(i in data){
-			webshot(data[i].baseUrl, './snaps/' + data[i].baseUrl + '.png', options, (err)=>{
-				console.log('image written to disk')
-			});
-		}
+		iterWait (data, 0);
 	})
+}
+
+function iterWait (data, i){
+	webshot(data[i].baseUrl, './snaps/' + data[i].baseUrl + '.png', options, (err)=>{
+		console.log(data[i].title + ' generated')
+		if(i >= (data.length - 1)){
+			console.log('complete!')
+		} else {
+			i++;
+			console.log('Next is ' + i + '!');
+			iterWait(data, i);	
+		}
+	});
 }
